@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+from plotly import plotly.express as px
 
 import io
 
@@ -170,7 +170,7 @@ if dataset:
                     if (i >= len(selected_cat_cols)):
                         break
 
-                    fig = plt.histogram(df, x = selected_cat_cols[i], color_discrete_sequence=['indianred'])
+                    fig = px.histogram(df, x = selected_cat_cols[i], color_discrete_sequence=['indianred'])
                     j.plotly_chart(fig)
                     i += 1
 
@@ -188,7 +188,7 @@ if dataset:
                     if (i >= len(selected_num_cols)):
                         break
                     
-                    fig = plt.box(df, y = selected_num_cols[i])
+                    fig = px.box(df, y = selected_num_cols[i])
                     j.plotly_chart(fig, use_container_width = True)
                     i += 1
 
@@ -231,7 +231,7 @@ if dataset:
                 if model_type == 'Regression':
                     fig = plt.box(df_1, y = target_column, color = selected_cat_cols[i])
                 else:
-                    fig = plt.histogram(df_1, color = selected_cat_cols[i], x = target_column)
+                    fig = px.histogram(df_1, color = selected_cat_cols[i], x = target_column)
 
                 st.plotly_chart(fig, use_container_width = True)
                 i += 1
